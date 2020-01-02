@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { ScrollService } from './_services/scroll.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'yad-client';
+
+  constructor(
+    private scrollService: ScrollService,
+  ) {
+
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event) {
+    this.scrollService.changeScrollOffset(window.scrollY);
+  }
+
 }

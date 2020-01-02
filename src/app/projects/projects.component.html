@@ -1,0 +1,13 @@
+<ngx-masonry id="gallery">
+  <img ngxMasonryItem *ngFor="let link of loadedLinks; index as id" src="{{link}}" (click)="showSlider(id)" (load)="loadNewImage()">
+</ngx-masonry>
+
+<div id="slider" class="slider" [@sliderToggle]="isSliderOpened ? 'open' : 'close'">
+  <swiper [(index)]="currentSlideIndex" (click)="hideSlider()">
+    <div class="slide" *ngFor="let link of links">
+      <img src="{{link}}">
+    </div>
+  </swiper>
+  <div class="slider-button-prev" (click)="prevSlide()"></div>
+  <div class="slider-button-next" (click)="nextSlide()"></div>
+</div>

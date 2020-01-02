@@ -1,0 +1,7 @@
+<div class="alerts">
+  <div class="alert" *ngFor="let alert of alerts"
+  [ngStyle]="{ 'background-color' : alert.type == 'error' ? 'red' : alert.type == 'info' ? 'yellow' : 'green' }"
+  (click)="hideAlert(alert.id)">
+    <p>{{alert.message}}</p>
+  </div>
+</div>

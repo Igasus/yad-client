@@ -1,0 +1,37 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <p>Login to account</p>
+
+  <div class="form-block">
+    <label for="loginFormUsername">Username</label>
+    <input type="text" id="loginFormUsername" formControlName="username" placeholder="User228">
+  </div>
+
+  <div class="form-block">
+    <label for="loginFormPassword">Password</label>
+    <input type="password" id="loginFormPassword" formControlName="password" placeholder="MegaPassword2213">
+  </div>
+
+  <div class="form-block">
+    <button type="submit">Login</button>
+  </div>
+</form>
+
+
+
+<form [formGroup]="passwordForm" (ngSubmit)="register()">
+  <p>Register new account</p>
+
+  <div class="form-block">
+    <label for="registerFormUsername">Username</label>
+    <input type="text" id="registerFormUsername" formControlName="username" placeholder="User228">
+  </div>
+
+  <div class="form-block">
+    <label for="registerFormPassword">Password</label>
+    <input type="password" id="registerFormPassword" formControlName="password" placeholder="MegaPassword2213">
+  </div>
+
+  <div class="form-block">
+    <button type="submit">Register</button>
+  </div>
+</form>

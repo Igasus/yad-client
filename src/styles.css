@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/assets/fonts/Comfortaa.ttf');
+}
+
+@font-face {
+  font-family: 'SanFrancisco';
+  src: url('/assets/fonts/PoiretOne-Regular.ttf');
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+p, label, button {
+  font-family: 'Comfortaa';
+}

@@ -1,0 +1,18 @@
+.alerts {
+  position: fixed;
+  top: 0;
+  right: 10px;
+  width: 300px;
+}
+
+.alert {
+  width: 300px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.alert p {
+  font-size: 13px;
+  line-height: 13px;
+  padding: 7px;
+}
