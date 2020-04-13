@@ -1,0 +1,70 @@
+<header id="header">
+  <div id="logo">
+    <img src="./assets/logo.jpg" id="logoImg" routerLink="/">
+    <p class="logoText">studio</p>
+    <p class="logoText">3d vizualization</p>
+  </div>
+  <ul id="menu">
+    <li routerLink="/contacts">{{contentCurrent.Buttons[0]}}</li>
+    <li routerLink="/about">{{contentCurrent.Buttons[1]}}</li>
+    <li routerLink="/projects">{{contentCurrent.Buttons[2]}}</li>
+    <li routerLink="/services">{{contentCurrent.Buttons[3]}}</li>
+    <li routerLink="/">{{contentCurrent.Buttons[4]}}</li>
+    <li routerLink="/admin" *ngIf=isLoggedIn>{{username}}</li>
+  </ul>
+  <div id="language">
+    <a nohref class="english" (click)="changeLanguage('english')"
+      [@languageToggle]="currentLanguage == 'english' ? 'active' : 'inactive'">EN</a>
+    <a nohref> / </a>
+    <a nohref class="russian" (click)="changeLanguage('russian')"
+      [@languageToggle]="currentLanguage == 'russian' ? 'active' : 'inactive'">RU</a>
+  </div>
+
+  <div id="right-up-coner">
+    <div id="phoneNumbers">
+      <p>+38 (093) 524 77 32</p><br>
+      <p>+38 (093) 344 23 93</p>
+    </div>
+    <div>
+      <a href="https://vk.com/yad.design/"><img src="./assets/vk.png"></a>
+    </div>
+    <div>
+      <a href="https://www.facebook.com/groups/468464363978196/"><img src="./assets/fb.png"></a>
+    </div>
+    <div>
+      <a href="https://www.instagram.com/yad.design/"><img src="./assets/ig.png"></a>
+    </div>
+  </div>
+</header>
+
+
+
+<!-- <header id="headerMobile" *responsive="{ device: ['mobile', 'tablet'] }">
+  <div id="logo">
+    <img src="./assets/logo.jpg" id="logoImg" routerLink="/">
+    <p class="logoText">studio</p>
+    <p class="logoText">3d vizualization</p>
+  </div>
+
+  <div id="menu-icon" (click)="menuToggle()">
+    <div class="menu-stick" id="menu-stick-top"></div>
+    <div class="menu-stick" id="menu-stick-mid"></div>
+    <div class="menu-stick" id="menu-stick-bot"></div>
+  </div>
+</header>
+
+<div *responsive="{ device: ['mobile', 'tablet'] }">
+  <div id="menu-close" (click)="headerService_closeMenu()"></div>
+  <div id="menu-mobile">
+    <a nohref (click)="headerService_closeMenu()" id="main" routerLink="/">{{text_main[4]}}</a>
+    <a nohref (click)="headerService_closeMenu()" id="services" routerLink="/services">{{text_main[3]}}</a>
+    <a nohref (click)="headerService_closeMenu()" id="projects" routerLink="/projects">{{text_main[2]}}</a>
+    <a nohref (click)="headerService_closeMenu()" id="about" routerLink="/about">{{text_main[1]}}</a>
+    <a nohref (click)="headerService_closeMenu()" id="contacts" routerLink="/contacts">{{text_main[0]}}</a>
+    <div id="language">
+      <a nohref id="english" (click)="changeLanguage('en')">EN</a>
+      <a nohref>/</a>
+      <a nohref id="russian" (click)="changeLanguage('ru')">RU</a>
+    </div>
+  </div>
+</div> -->

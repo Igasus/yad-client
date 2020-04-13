@@ -6,13 +6,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { AppRoutingModule } from './app-routing.module';
 import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
-import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AdminComponent } from './admin/admin.component';
 import { AlertComponent } from './_components/alert/alert.component';
+import { HeaderComponent } from './_components/header/header.component';
+import { AboutComponent } from './about/about.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { ImageUploadComponent } from './_components/image-upload/image-upload.component';
+import { DragAndDropDirective } from './_directives/drag-and-drop.directive';
+import { SliderComponent } from './_components/slider/slider.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -28,7 +33,13 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     HomeComponent,
     ProjectsComponent,
     AdminComponent,
-    AlertComponent
+    AlertComponent,
+    HeaderComponent,
+    AboutComponent,
+    ContactsComponent,
+    ImageUploadComponent,
+    DragAndDropDirective,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
@@ -37,10 +48,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     HttpClientModule,
     ReactiveFormsModule,
     NgxMasonryModule,
-    SwiperModule,
-    LazyLoadImageModule.forRoot({
-      preset: scrollPreset
-    })
+    SwiperModule
   ],
   providers: [
     {

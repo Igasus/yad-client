@@ -8,11 +8,11 @@ export class ScrollService {
 
   constructor() { }
 
-  @Output() scrollOffsetChanged: EventEmitter<number> = new EventEmitter();
+  @Output() onScroll: EventEmitter<number> = new EventEmitter();
 
   changeScrollOffset(offset) {
     this.scrollOffset = offset;
-    this.scrollOffsetChanged.emit(this.scrollOffset);
+    this.onScroll.emit(this.scrollOffset);
   }
 
 }

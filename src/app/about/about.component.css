@@ -1,0 +1,92 @@
+header {
+  width: 100%;
+  height: 80px;
+}
+
+
+
+#head {
+  height: 180px;
+  width: 100%;
+}
+
+#head p {
+  position: absolute;
+  color: #312424;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#head_title {
+  top: 135px;
+  font-size: 40px;
+  width: 300px;
+  border-bottom: solid 2px #817474;
+  white-space: nowrap;
+  text-align: center;
+}
+
+#head_studio {
+  top: 185px;
+  font-size: 20px;
+}
+
+#head_name {
+  top: 210px;
+  font-size: 20px;
+}
+
+
+
+#text {
+  width: 100%;
+}
+
+#text p {
+  text-align: center;
+  margin: 20px 70px 30px 70px;
+  font-size: 20px;
+}
+
+
+#pros {
+  margin-top: 120px;
+  height: 400px;
+  width: 100%;
+}
+
+#pros span {
+  position: absolute;
+  font-size: 37px;
+  border-bottom: solid 2px #817474;
+  text-align: center;
+  width: 400px;
+  white-space: nowrap;
+  left: 50%;
+  transform: translate(-50%, -70px);
+}
+
+
+
+ul {
+  margin: 150px 0px 0px 10%;
+  width: 90%;
+  height: 280px;
+  list-style-type: none;
+}
+
+ul img {
+  width: 40px;
+  height: 40px;
+  margin-left: -40px;
+  transform: translate(-10px, 5px);
+}
+
+ul li {
+  width: calc(50% - 60px);
+  height: 50px;
+  margin: 15px 0px 15px 60px;
+  font-size: 23px;
+  float: left;
+  text-decoration: none;
+}

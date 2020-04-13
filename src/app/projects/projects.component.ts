@@ -1,91 +1,94 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterContentInit, ViewChild } from '@angular/core';
 import { ServerService } from '../_services/server.service';
 import { ScrollService } from '../_services/scroll.service';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-  sequence
-} from '@angular/animations';
+import { SliderService } from '../_services/slider.service';
 
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css'],
-  animations: [
-    trigger('sliderToggle', [
-      state('close', style({
-        opacity: 0,
-        display: 'none'
-      })),
-      state('open', style({
-        display: 'block',
-        opacity: 1
-      })),
-      transition('close => open', sequence([
-        style({ display: 'block' }),
-        animate('0.3s')
-      ])),
-      transition('open => close', animate('0.3s'))
-    ])
-  ]
+  styleUrls: ['./projects.component.css']
 })
-export class ProjectsComponent implements OnInit {
-  isSliderOpened: boolean = false;
-  loadedLinks: Array<string> = [];
-  links: Array<string> = [];
-  currentSlideIndex: number = 0;
-  scrollOffset: number = 0;
-  lastLoadedLinkIndex: number = 0;
+export class ProjectsComponent implements AfterContentInit {
 
 
+  loadedLinks: Array<string> = []; // Array of ONLY loaded links
+  links: Array<string>; //Array of all links
+  lastLoadedLinkIndex: number; //Index of last loaded link in 'links' array
+  updateLayout: boolean = false; //Boolean variable that lets to update layout after loading a new image
+  generateInProcess: boolean; //Boolean variable that shows is the gallery adding new images at the moment
+  scrollOffset: number = 0; //Page scroll offset
+  extraOffset: number = 500; /*Necessary distance in pixels from bottom of the window to the lowest level of the gallery
+                                 to add new image */
 
   constructor(
     private serverService: ServerService,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private sliderService: SliderService
   ) {
-    this.scrollService.scrollOffsetChanged.subscribe(offset=>{
-      this.scrollOffset = offset;
-      this.loadNewImage();
-    });
+    this.scrollService.onScroll.subscribe(offset => this.onScroll(offset));
   }
 
 
-
-  ngOnInit() {
+  //setting standart options
+  ngAfterContentInit() {
     this.links = this.serverService.getProjectsLinks();
+    this.generateInProcess = true;
     this.loadedLinks.push(this.links[0]);
+    this.lastLoadedLinkIndex = 0;
   }
 
 
+  //Function that checks if we can add new image to gallery
+  checkImageAddingOpportunity() {
+    //Index out of range
+    if (this.lastLoadedLinkIndex >= this.links.length - 1)
+      return false;
 
-  loadNewImage() {
-    let linkIndex = this.lastLoadedLinkIndex + 1;
-    if (linkIndex == this.links.length)
-      return;
-    let windowHeight = window.innerHeight;
+    //Images mustn't be added out of window
     let galleryHeight = document.getElementById("gallery").clientHeight;
-    if (windowHeight + this.scrollOffset >= galleryHeight - 300) {
-      this.loadedLinks.push(this.links[linkIndex]);
-      this.lastLoadedLinkIndex = linkIndex;
-    }
+    let windowHeight = window.innerHeight;
+    if (this.scrollOffset + windowHeight + this.extraOffset > galleryHeight)
+      return true;
+
+    return false;
   }
 
 
+  //On page scrolling
+  onScroll(offset: number) {
+    this.scrollOffset = offset;
 
+    //Check if the gallery is already generating
+    if (this.generateInProcess == true)
+      return;
+
+    if (this.checkImageAddingOpportunity())
+      this.loadNewImage();
+    else
+      this.generateInProcess = false;
+  }
+
+
+  //On image load
+  onLoad() {
+    if (this.checkImageAddingOpportunity())
+      this.loadNewImage();
+    else
+      this.generateInProcess = false;
+  }
+
+  //Adding a new gallery image
+  loadNewImage() {
+    this.generateInProcess = true;
+    this.lastLoadedLinkIndex++;
+    this.loadedLinks.push(this.links[this.lastLoadedLinkIndex]);
+    this.updateLayout = !this.updateLayout; //Updating layout
+  }
+
+  //Showing full-page slider
   showSlider(id) {
-    this.currentSlideIndex = id;
-    this.isSliderOpened = true;
+    this.sliderService.open(this.loadedLinks, id);
   }
 
-  hideSlider() { this.isSliderOpened = false; }
-
-
-
-  nextSlide() { this.currentSlideIndex = (this.currentSlideIndex + 1) % this.links.length; }
-
-  prevSlide() { this.currentSlideIndex = (this.currentSlideIndex - 1 + this.links.length) % this.links.length; }
 }

@@ -1,2 +1,5 @@
 <app-alert></app-alert>
-<router-outlet (scroll)="onScroll($event)"></router-outlet>
+
+<router-outlet (scroll)="onScroll($event)" *ngIf="startDataLoaded"></router-outlet>
+<app-slider></app-slider>
+<app-header></app-header>

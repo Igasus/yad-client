@@ -1,3 +1,11 @@
 {
-  "serverUrl": "http://localhost:5000/"
+  "serverUrl": "http://localhost:5000/",
+  "httpOptions": {
+    "withCredentials": true
+  },
+  "nullUser": {
+    "username": null,
+    "password": null,
+    "post": null
+  }
 }

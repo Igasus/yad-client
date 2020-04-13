@@ -1,4 +1,10 @@
-<form [formGroup]="loginForm" (ngSubmit)="login()">
+<header></header>
+
+
+
+
+<div *ngIf="!loggedIn">
+<form [formGroup]="loginForm" (ngSubmit)="sign('in')">
   <p>Login to account</p>
 
   <div class="form-block">
@@ -12,13 +18,61 @@
   </div>
 
   <div class="form-block">
-    <button type="submit">Login</button>
+    <button type="submit" [disabled]="loading">
+      <p *ngIf="loading">Wait...</p>
+      <p *ngIf="!loading">Login</p>
+    </button>
   </div>
 </form>
+</div>
 
 
 
-<form [formGroup]="passwordForm" (ngSubmit)="register()">
+
+<div *ngIf="loggedIn">
+<button type="button" (click)="showRegisterForm()">Register new account</button>
+<div class="fading-form-div" [@ShowHideTrigger]="isRegisterFormOpen ? 'open' : 'close'">
+  <div class="close-background" (click)="hideRegisterForm()"></div>
+  <form class="fading-form" [formGroup]="registerForm" (ngSubmit)="sign('up')">
+    <p>Register new account</p>
+
+    <div class="form-block">
+      <label for="registerFormUsername">Username</label>
+      <input type="text" id="registerFormUsername" formControlName="username" placeholder="User228">
+    </div>
+
+    <div class="form-block">
+      <label for="registerFormPassword">Password</label>
+      <input type="password" id="registerFormPassword" formControlName="password" placeholder="MegaPassword2213">
+    </div>
+
+    <div class="form-block">
+      <button type="submit" [disabled]="loading">
+        <p *ngIf="loading">Wait...</p>
+        <p *ngIf="!loading">Register</p>
+      </button>
+    </div>
+  </form>
+</div>
+<button type="button" (click)="sign('out')">Sign out</button>
+</div>
+
+
+
+
+<div *ngIf="loggedIn">
+<button type="button" (click)="showUploadForm()">Upload new Image</button>
+<div class="fading-form-div" [@ShowHideTrigger]="isUploadFormOpen ? 'open' : 'close'">
+  <div class="close-background" (click)="hideUploadForm()"></div>
+  <app-image-upload class="fading-form"></app-image-upload>
+</div>
+</div>
+
+<!-- <app-image-upload></app-image-upload> -->
+
+
+
+<!-- <form [formGroup]="registerForm" (ngSubmit)="sign('up')">
   <p>Register new account</p>
 
   <div class="form-block">
@@ -32,6 +86,9 @@
   </div>
 
   <div class="form-block">
-    <button type="submit">Register</button>
+    <button type="submit" [disabled]="loading">
+      <p *ngIf="loading">Wait...</p>
+      <p *ngIf="!loading">Register</p>
+    </button>
   </div>
-</form>
+</form> -->

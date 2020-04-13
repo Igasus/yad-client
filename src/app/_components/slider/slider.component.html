@@ -1,0 +1,9 @@
+<div id="slider" class="slider" [@sliderToggle]="isSliderOpened ? 'open' : 'close'">
+  <swiper [(index)]="currentSlideIndex" (click)="hideSlider()">
+    <div class="slide" *ngFor="let image of images">
+      <img [src]="image">
+    </div>
+  </swiper>
+  <div class="slider-button-prev" (click)="prevSlide()"></div>
+  <div class="slider-button-next" (click)="nextSlide()"></div>
+</div>

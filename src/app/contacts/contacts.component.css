@@ -1,0 +1,52 @@
+#title {
+  position: absolute;
+  color: #312424;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 135px;
+  font-size: 40px;
+  width: 240px;
+  border-bottom: solid 2px #817474;
+  white-space: nowrap;
+  text-align: center;
+}
+
+
+
+#contacts {
+  margin-top: 225px;
+  height: 150px;
+  width: 100%;
+}
+
+#contacts div {
+  width: calc(50% - 2px);
+  float: left;
+  height: 100%;
+}
+
+#phone {
+  border-right: solid 2px #817474;
+}
+
+.sub_title {
+  width: 100%;
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contacts_content {
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+#content p {
+  text-align: center;
+  margin: 70px 70px 80px 70px;
+  font-size: 20px;
+}

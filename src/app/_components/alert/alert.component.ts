@@ -25,4 +25,26 @@ export class AlertComponent implements OnInit {
   hideAlert(id) {
     this.alertService.deleteAlert(id);
   }
+
+  //Determine a color of alert
+  getAlertColor(type:string) {
+    let color:string;
+
+    switch (type) {
+      case "error":
+        color = "red";
+        break;
+      case "success":
+        color = "green";
+        break;
+      case "info":
+        color = "yellow";
+        break;
+      default:
+        color = "grey";
+        break;
+    }
+
+    return color;
+  }
 }

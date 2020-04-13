@@ -1,0 +1,38 @@
+<form class="upload-form" [formGroup]="uploadForm" (ngSubmit)="uploadAllImages()">
+  <p class="form-title">Upload new image</p>
+
+  <div class="upload-block">
+    <section class="preload-gallery">
+      <ngx-masonry appDragAndDrop [options]="masonryOptions"
+      [updateLayout]="updateMasonryLayout"
+      (layoutComplete)="loadNext()"
+      (onFilesDropped)="onImageInputChange($event)"
+      (onDragOver)="onDragOver()"
+      (onDragLeave)="onDragLeave()">
+        <div class="click-input-block preload-gallery-item" (click)="fileInput.click()">
+          <input multiple hidden #fileInput type="file" formControlName="files" (change)="onImageInputChange($event.target.files)">
+          <img src="assets/add.png">
+        </div>
+
+        <div ngxMasonryItem class="preload-gallery-item" *ngFor="let image of images; let id = index">
+          <img [src]="image.url">
+          <div class="zoom-button" (click)="zoomImage(id)"></div>
+          <div class="remove-button" (click)="removeImage(id)"></div>
+        </div>
+
+        <div class="drag-and-drop-block" [@ShowHideTrigger]="dragAndDropFaded ? 'hide' : 'show'">
+          <img src="assets/drop.png">
+        </div>
+      </ngx-masonry>
+    </section>
+
+    <button type="submit" [disabled]="loading" class="upload-submit">
+      <p *ngIf="loading">Wait...</p>
+      <p *ngIf="!loading">Upload</p>
+    </button>
+    <button type="button" (click)="clearPreloadGallery()">
+      <p>Clear</p>
+    </button>
+  </div>
+
+</form>
